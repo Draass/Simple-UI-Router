@@ -5,21 +5,21 @@ using UnityEngine;
 
 namespace Draas.UI.Routers
 {
-    public abstract class Router<T> : MonoBehaviour
+    public abstract class AbstractRouter<T> : MonoBehaviour
     {
         //public event Action<T> OnStateChanged;
-        [SerializeField] private View<T>[] viewsList;
+        [SerializeField] private AbstractView<T>[] viewsList;
 
-        private Dictionary<T, View<T>> _views = new Dictionary<T, View<T>>();
-        private View<T> _previousView;
-        private View<T> _currentView;
+        private Dictionary<T, AbstractView<T>> _views = new Dictionary<T, AbstractView<T>>();
+        private AbstractView<T> _previousAbstractView;
+        private AbstractView<T> _currentAbstractView;
 
         private void Awake()
         {
             InitializeViewsDictionary();
         }
 
-        public void SetView(T view, ViewSetMode mode = ViewSetMode.Additive)
+        public virtual void SetView(T view, ViewSetMode mode = ViewSetMode.Additive)
         {
             switch (mode)
             {
@@ -32,18 +32,18 @@ namespace Draas.UI.Routers
             }
         }
 
-        public void ReturnToPreviousView()
+        public virtual void ReturnToPreviousView()
         {
-            if (_previousView is null)
+            if (_previousAbstractView is null)
             {
                 Debug.LogWarning("Previous view does not exist!");
                 return;
             }
             
-            SwitchView(_previousView.GetViewType());
+            SwitchView(_previousAbstractView.GetViewType());
         }
 
-        public void CloseView(T view)
+        public virtual void CloseView(T view)
         {
             _views[view].DisableView();
         }
@@ -63,11 +63,11 @@ namespace Draas.UI.Routers
 
         private void SwitchView(T view)
         {
-            _previousView = _currentView;
-            _previousView?.DisableView();
+            _previousAbstractView = _currentAbstractView;
+            _previousAbstractView?.DisableView();
             
-            _currentView = _views[view];
-            _currentView.EnableView();
+            _currentAbstractView = _views[view];
+            _currentAbstractView.EnableView();
             
             //OnStateChanged?.Invoke(view);
         }

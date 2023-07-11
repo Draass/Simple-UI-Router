@@ -3,7 +3,13 @@ using Draas.UI.Routers;
 
 namespace Draas.Examples
 {
-    public class EnumRouter : Router<Enum>
+    public enum MainScreenViews
     {
+        
+    }
+
+    public class EnumRouter : AbstractRouter<Enum>
+    {
+        
     }
 }

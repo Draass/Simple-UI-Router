@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Draas.UI.Views
 {
-    public abstract class View<T> : MonoBehaviour
+    public abstract class AbstractView<T> : MonoBehaviour
     {
         [SerializeField] private T viewType;
         [SerializeField] private Canvas canvas;
