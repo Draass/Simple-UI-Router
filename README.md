@@ -21,7 +21,7 @@ To start using router, create a child of AbstractRouter and choose a type you wi
 
 Here is the most basic example for a router base on enums:
 
-```
+```С#
 public class EnumRouter : AbstractRouter<Enum>
     {
         // Any additional logic you need here       
@@ -30,7 +30,7 @@ public class EnumRouter : AbstractRouter<Enum>
 
 This is an enum view for such router:
 
-```
+```С#
 public class SettingsView : AbstractView<Enum>
     {
         // Some enum
