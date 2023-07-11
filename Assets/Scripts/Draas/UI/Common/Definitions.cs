@@ -1,17 +1,15 @@
-using UnityEngine;
-
-namespace Draas
+namespace Draas.UI.Common
 {
-    public enum PageSetMode
+    public enum ViewSetMode
     {
         /// <summary>
         /// Perform action only for selected page
         /// </summary>
-        Single,
+        Additive,
         
         /// <summary>
         /// Perform action for selected page and a previous page
         /// </summary>
-        Additive
+        Replacing
     }
 }
